@@ -1,0 +1,95 @@
+{%extends 'base.html' %}
+
+{%block title%}
+
+{%endblock%}
+
+{%block content%}
+
+
+    <div class="container shares">
+
+      <div class="shares__slider-wrapper">
+        <div class="shares__1"></div>
+        <div class="shares__2"></div>
+
+        <button class="shares__slider-left"></button>
+        <button class="shares__slider-right"></button>
+
+        <div class="shares__slider">
+
+          <div>
+            {%for sale_product in sale_product %}
+            <a href="#" class="card-mini">
+              <div class="card-mini__img">
+                <img src="{{sale_product.image.url}}">
+                <span class="card__percent">{{sale_product.sale_percent}}</span>
+              </div>
+
+              <div class="card-mini__price">
+                <p class="old-price">{{sale_product.old_price}}c</p>
+                <p class="new-price">{{sale_product.new_price }} с</p>
+              </div>
+
+              <p class="card-mini__desc">sale_product.name</p>
+            </a>
+            {%endfor%}
+          </div>
+
+          <div>
+            {%for sale_product2 in sale_products2 %}
+            <a href="#" class="card-mini">
+              <div class="card-mini__img">
+                <img src="{{sale_product.image.url}}">
+                <span class="card__percent">{{sale_product2.sale_percent}}</span>
+              </div>
+
+              <div class="card-mini__price">
+                <p class="old-price">{{sale_product2.old_price}}c</p>
+                <p class="new-price">{{sale_product2.new_price }} с</p>
+              </div>
+
+              <p class="card-mini__desc">sale_product2.name</p>
+            </a>
+            {%endfor%}
+          </div>
+
+
+        </div>
+
+      </div>
+
+      <div class="sort">
+        <span class="sort__caption">Сортировать по:</span>
+        <a href="#" class="sort__link">Цене</a>
+        <a href="#" class="sort__link">Обновлению</a>
+      </div>
+
+    </div>
+
+
+    <div class="container products">
+      <div class="products__slider products__slider--1">
+        {% for product in products %}
+        <div>
+          <a href="#" class="card">
+            <img src="{{product.image.url}}">
+            <h5 class="card__title">
+              {{product.name}}
+            </h5>
+            <p class="card__desc">{{product.description}}</p>
+            <div class="card__footer">
+              <span class="card__price">{{product.price}}</span>
+              <span class="card__cart"></span>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+
+
+      </div>
+      <div class="show-more-wrapper">
+        <a href="#" class="show-more">Показать еще</a>
+      </div>
+    </div>
+{%endblock%}

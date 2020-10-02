@@ -22,7 +22,7 @@
 
     <header class="container header">
 
-      <a href="#" class="logo header__logo">
+      <a href="{% url 'product_list' %}" class="logo header__logo">
         <img class="logo__img" src="{%static 'img/logo.svg' %}" alt="BishkekFilter">
       </a>
 
@@ -30,9 +30,9 @@
 
       <div class="mobile-menu">
         <nav class="mobile-menu__nav">
+
           <div class="nav__link nav__link--dropdown">
             Каталог
-
             <div class="nav__sub">
               <a href="#" class="nav__sublink">сервис центр</a>
               <a href="#" class="nav__sublink">оптовики</a>
@@ -45,13 +45,11 @@
           <a href="#" class="nav__link">оптовики</a>
           <div class="nav__link nav__link--dropdown">
             Каталог
-
             <div class="nav__sub">
               <a href="#" class="nav__sublink">сервис центр</a>
               <a href="#" class="nav__sublink">оптовики</a>
               <div class="nav__sublink nav__sublink--dropdown">
                 Каталог
-
                 <div class="nav__sub">
                   <a href="#" class="nav__sublink">сервис центр</a>
                   <a href="#" class="nav__sublink">оптовики</a>
@@ -67,11 +65,13 @@
           <a href="#" class="nav__link">Контакты</a>
         </nav>
 
+
+
+
         <div class="mobile-menu__contacts">
           <a href="#" class="header__contact">+996 707 590 505</a>
           <a href="#" class="header__contact">+996 550 590 505</a>
         </div>
-
         <div class="social mobile-menu__social">
           <a href="#" class="social__link"></a>
           <a href="#" class="social__link"></a>
@@ -82,35 +82,43 @@
 
       <nav class="nav header__nav">
         <div class="nav__link nav__link--dropdown">
-          <span>Каталог</span>
+          <span>
+             <a href="{% url 'product_list' %}" style="text-decoration:none; color: #36667B;">
+            Каталог
+            </a>
+          </span>
+
           <div class="nav__sub">
+            {%for category in categories %}
             <div class="nav__sublink nav__sublink--dropdown">
-              <span>Sublink</span>
+            {%if  category.child_categories.all %}
+              <span>
+              <a href="{% url 'category_list' category.slug %}" style="text-decoration:none; color: #36667B;">
+                {{category.name}}
+              </a>
+              </span>
               <div class="nav__sub">
-                <a href="#" class="nav__sublink">Сервис Центр</a>
-                <a href="#" class="nav__sublink">Рассрочка</a>
-                <a href="#" class="nav__sublink">Оптовики</a>
-                <a href="#" class="nav__sublink">О нас</a>
+                {% for sub_category in category.child_categories.all %}
+                <a href="{% url 'sub_category_list' category.slug sub_category.slug %}" class="nav__sublink">{{ sub_category.name }}</a>
+                {% endfor %}
+            {% else %}
+                <a href="{% url 'category_list' category.slug %}" class="nav__sublink">{{category.name}}</a>
+            {% endif %}
               </div>
-            </div>
-            <a href="#" class="nav__sublink">Рассрочка</a>
-            <div class="nav__sublink nav__sublink--dropdown">
-              <span>Sublink</span>
-              <div class="nav__sub">
-                <a href="#" class="nav__sublink">Сервис Центр</a>
-                <a href="#" class="nav__sublink">Рассрочка</a>
-                <a href="#" class="nav__sublink">Оптовики</a>
-                <a href="#" class="nav__sublink">О нас</a>
-              </div>
-            </div>
-            <a href="#" class="nav__sublink">О нас</a>
+
           </div>
+              {% endfor %}
         </div>
-        <a href="#" class="nav__link">Сервис Центр</a>
-        <a href="#" class="nav__link">Рассрочка</a>
-        <a href="#" class="nav__link">Оптовики</a>
-        <a href="#" class="nav__link">О нас</a>
-        <a href="#" class="nav__link">Контакты</a>
+        </div>
+
+
+
+
+        <a href="{% url 'garanty' %}" class="nav__link">Сервис Центр</a>
+        <a href="{% url 'installment' %}" class="nav__link">Рассрочка</a>
+        <a href="{% url 'wholesalers' %}" class="nav__link">Оптовики</a>
+        <a href="{% url 'about' %}" class="nav__link">О нас</a>
+        <a href="{% url 'contacts' %}" class="nav__link">Контакты</a>
       </nav>
 
       <div class="header__contacts">
