@@ -1,16 +1,11 @@
   <!DOCTYPE html>
   <html lang="en">
   <head>
-    {%load static%}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        {% block title %}
-        BishkekFilter
-        {%endblock%}
-    </title>
+    <title>BishkekFilter</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="./main.css">
   </head>
   <body>
     <div id="recall" class="recall">
@@ -23,7 +18,7 @@
     <header class="container header">
 
       <a href="#" class="logo header__logo">
-        <img class="logo__img" src="{%static 'img/logo.svg' %}" alt="BishkekFilter">
+        <img class="logo__img" src="./img/logo.svg" alt="BishkekFilter">
       </a>
 
       <button class="hamburger"></button>
@@ -123,14 +118,73 @@
       </a>
 
     </header>
-    {% block content %}
 
 
-    {% endblock %}
+
+
+    <div class="container center">
+      <h3 class="title">Корзина</h3>
+
+      <div class="cart-info">
+        <span class="cart-info__count-caption">Товары:</span>
+        <span class="cart-info__count">2</span>
+        <span class="cart-info__total-caption">Итого:</span>
+        <span class="cart-info__total">1670 сом</span>
+      </div>
+
+      <div class="carts-list">
+        <div class="cart-card">
+          <button class="cart-card__close"></button>
+
+          <img src="./img/1.jpg">
+
+          <div class="cart-card__info">
+            <span class="cart-card__title">Модель: CR2-S400</span>
+            <span class="cart-card__desc">Большая ступенчатая система фильтрации питьевой воды</span>
+          </div>
+
+          <div class="cart-card__count">
+            <button class="cart-card__dec">-</button>
+            <span class="cart-card__count">1</span>
+            <button class="cart-card__inc">+</button>
+          </div>
+
+          <span class="cart-card__price">925 с</span>
+        </div>
+
+        <div class="cart-card">
+          <button class="cart-card__close"></button>
+
+          <img src="./img/1.jpg">
+
+          <div class="cart-card__info">
+            <span class="cart-card__title">Модель: CR2-S400</span>
+            <span class="cart-card__desc">Большая ступенчатая система фильтрации питьевой воды</span>
+          </div>
+
+          <div class="cart-card__count">
+            <button class="cart-card__dec">-</button>
+            <span class="cart-card__count">1</span>
+            <button class="cart-card__inc">+</button>
+          </div>
+
+          <span class="cart-card__price">925 с</span>
+        </div>
+      </div>
+
+
+      <div class="cart-buttons">
+        <a class="button" href="#">Написать в What`s App</a>
+        <a class="button" href="#">Позвонить</a>
+      </div>
+
+    </div>
+
+
     <footer class="footer">
       <div class="container footer__wrapper">
         <a href="#" class="footer__logo">
-          <img src="{%static 'img/logo_footer.svg' %}">
+          <img src="./img/logo_footer.svg">
         </a>
 
         <div class="header__contacts">
@@ -149,6 +203,6 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" defer></script>
-    <script src="{% static 'main.js' %}" defer></script>
+    <script src="./main.js" defer></script>
   </body>
   </html>
