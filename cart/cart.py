@@ -1,6 +1,6 @@
 from decimal import Decimal
 from django.conf import settings
-from products.models import Product
+from product.models import Product
 
 
 class Cart(object):
@@ -18,7 +18,7 @@ class Cart(object):
         '''
         product_id = str(product.id)
         if product_id not in self.cart:
-            self.cart[product_id] = {'quantity':0, 'price':str(product.price)}
+            self.cart[product_id] = {'quantity': 0, 'price': str(product.price)}
         if update_quantity:
             self.cart[product_id]['quantity'] = quantity
         else:

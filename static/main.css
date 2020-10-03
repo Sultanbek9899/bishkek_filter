@@ -583,7 +583,7 @@ body {
 .card__cart {
   width: 21px;
   height: 19px;
-  background-image: url('./img/cart_light.svg');
+  background-image: url("{%static 'img/cart_light.svg' %}");
 }
 
 .products__all {
@@ -998,6 +998,7 @@ header {
   display: flex;
 }
 
+
 .cart-card__dec,
 .cart-card__inc {
   width: 23px;
@@ -1018,7 +1019,7 @@ header {
 
 .cart-card__price {
   font-weight: 500;
-  font-size: 24px;
+  font-size: 19px;
   line-height: 36px;
   color: #444148;
 }
@@ -1058,8 +1059,17 @@ header {
   }
 }
 
-
-
+/* стили для кнопки обновить в корзине  */
+.button-input{
+    color: #fff;
+    margin-left:3px;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 2px 10px;
+  background: #31B3E3;
+  border-radius: 5px;
+  text-decoration: none;
+}
 
 .button {
   color: #fff;

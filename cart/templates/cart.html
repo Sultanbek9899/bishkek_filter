@@ -1,0 +1,76 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block title %}
+{% endblock %}
+
+{%block content%}
+    {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+    <div class="container center">
+      <h3 class="title">Корзина</h3>
+      <div class="cart-info">
+        <span class="cart-info__count-caption">Товары:</span>
+        <span class="cart-info__count">{{ total_items }}</span>
+        <span class="cart-info__total-caption">Итого:</span>
+        <span class="cart-info__total">{{ cart.get_total_price }} сом</span>
+      </div>
+
+
+      <div class="carts-list">
+        {% for item in cart %}
+        {% with product=item.product %}
+        <div class="cart-card">
+        <a href="{% url 'cart_remove' product.id%}">  <button class="cart-card__close"> </button> </a>
+          <img src="{{product.image.url}}">
+          <div class="cart-card__info">
+            <span class="cart-card__title">Модель: {{product.name}}</span>
+            <span class="cart-card__desc">{{product.description}}</span>
+          </div>
+
+          <div class="cart-card__count">
+            <span class="cart-card__count">
+              <form action="{% url 'cart_update' product.id %}" method="post">
+                {{ item.update_quantity_form.quantity }}
+                  {{ item.update_quantity_form.update }}
+                <input type="submit" value="Обновить" class="button-input">
+                {% csrf_token %}
+                </form>
+
+            </span>
+          </div>
+
+          <span class="cart-card__price">{{item.total_price}}c</span>
+        </div>
+        {% endwith %}
+      {% endfor %}
+      </div>
+
+
+      <div class="cart-buttons">
+        <a class="button" href="#">Написать в What`s App</a>
+        <a class="button" href="#">Позвонить</a>
+      </div>
+
+    </div>
+    {% else %}
+        <div class="container center">
+      <h3 class="title">Корзина</h3>
+      <div class="cart-info">
+        <span class="cart-info__count-caption">Товары:</span>
+        <span class="cart-info__count">0</span>
+        <span class="cart-info__total-caption">Итого:</span>
+        <span class="cart-info__total">0 сом</span>
+      </div>
+      <div class="empty-cart">
+        <img src="{% static 'img/cart_cyan.svg' %}">
+        <p class="empty-cart__title">Ваша корзина пуста</p>
+        <p class="empty-cart__desc">Товары хранятся в вашей корзине в течение 30 дней, после чего удаляюся</p>
+      </div>
+    </div>
+    {%endif%}
+
+    {%endwith%}
+
+
+ {% endblock %}

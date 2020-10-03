@@ -50,6 +50,12 @@ class Product(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавление', db_index=True)
     slug = models.SlugField(max_length=250)  # на будущее, если для товара нужна будет страница
     availability_status = models.BooleanField(default=True, verbose_name='Наличие на складе')
+    # Продукт может быть и скидочным , если статус будет True
+    sale_status = models.BooleanField(default=False, db_index=True,
+                                      verbose_name='Статус скидки товара')
+    new_price = models.DecimalField(max_digits=10, default=0, decimal_places=0,
+                                    verbose_name='Цена со скидкой', db_index=True)
+    sale_percent = models.PositiveSmallIntegerField(default=0, verbose_name='Процент скидки')
 
     class Meta:
         ordering = ['-created']
@@ -60,27 +66,6 @@ class Product(models.Model):
         return self.name
 
 
-class SaleProduct(models.Model):
-    """Модель для товара магазина cо скидкой"""
-    image = models.ImageField(upload_to='sale_products/%Y/%m/%d')
-    name = models.CharField(max_length=250, verbose_name='Название товара')
-    description = models.TextField(verbose_name='Описание товара')
-
-    old_price = models.DecimalField(max_digits=10, decimal_places=0,
-                                    verbose_name='Старая цена', db_index=True)
-    new_price = models.DecimalField(max_digits=10, decimal_places=0,
-                                    verbose_name='Новая цена', db_index=True)
-
-    slug = models.SlugField(max_length=250)  # на будущее, если для товара нужна будет страница
-    availability_status = models.BooleanField(default=True, verbose_name='Наличие на складе')
-    sale_percent = models.PositiveSmallIntegerField(verbose_name='Скидка')
-
-    class Meta:
-        verbose_name = 'Товар со скидкой'
-        verbose_name_plural = "Товары со скидкой"
-
-    def __str__(self):
-        return self.name
 
 
 class SalePicture(models.Model):

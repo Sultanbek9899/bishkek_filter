@@ -1,7 +1,7 @@
   <!DOCTYPE html>
   <html lang="en">
   <head>
-    {%load static%}
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
@@ -69,8 +69,8 @@
 
 
         <div class="mobile-menu__contacts">
-          <a href="#" class="header__contact">+996 707 590 505</a>
-          <a href="#" class="header__contact">+996 550 590 505</a>
+          <a href="tel:+996707590505" class="header__contact">+996 707 590 505</a>
+          <a href="tel:+996550590505" class="header__contact">+996 550 590 505</a>
         </div>
         <div class="social mobile-menu__social">
           <a href="#" class="social__link"></a>
@@ -122,12 +122,18 @@
       </nav>
 
       <div class="header__contacts">
-        <a href="#" class="header__contact">+996 707 590 505</a>
-        <a href="#" class="header__contact">+996 550 590 505</a>
+        <a href="tel:+996707590505" class="header__contact">+996 707 590 505</a>
+        <a href="tel:+996550590505" class="header__contact">+996 550 590 505</a>
       </div>
 
-      <a href="#" class="cart">
-        <span>2</span>
+      <a href="{% url 'cart_detail' %}" class="cart">
+        {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+        <span>{{total_items}}</span>
+        {%else%}
+        <span>0</span>
+        {%endif%}
+        {%endwith%}
       </a>
 
     </header>
@@ -142,8 +148,8 @@
         </a>
 
         <div class="header__contacts">
-          <a href="#" class="header__contact">+996 707 590 505</a>
-          <a href="#" class="header__contact">+996 550 590 505</a>
+          <a href="tel:+996707590505" class="header__contact">+996 707 590 505</a>
+          <a href="tel:+996550590505" class="header__contact">+996 550 590 505</a>
         </div>
 
         <p class="footer__addr">ул. Ш. Руставели 111. г.Бишкек, Кыргызстан</p>

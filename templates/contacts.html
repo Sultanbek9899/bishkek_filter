@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{%load static %}
 {% block title %}
 Контакты
 
@@ -13,8 +13,8 @@
 
       <div class="contacts__1"> 
         <div class="header__contacts">
-          <a href="#" class="header__contact">+996 707 590 505</a>
-          <a href="#" class="header__contact">+996 550 590 505</a>
+          <a href="tel:+996707590505" class="header__contact">+996 707 590 505</a>
+          <a href="tel:+996550590505" class="header__contact">+996 550 590 505</a>
         </div>
 
         <p class="footer__addr" style="color: #3B6A7E;">ул. Ш. Руставели 111. г.Бишкек, Кыргызстан</p>
@@ -29,10 +29,10 @@
 
       <div class="contacts__3">
         <a class="contacts__img" href="#">
-          <img src="./img/go.png">
+          <img src="{% static 'img/go.png' %}">
         </a>
         <a class="contacts__img" href="#">
-          <img src="./img/ya.png">
+          <img src="{% static 'img/ya.png' %}">
         </a>
       </div>
 
